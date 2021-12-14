@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public GameObject targetObject;
     private float targetAngle = 0;
     const float rotationAmount = 1.5f;
@@ -27,34 +29,50 @@ public class CameraRotation : MonoBehaviour
     void Start()
     {
         cameraOffset = transform.position - targetObject.transform.position;
-
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         // Trigger functions if Rotate is requested
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && twoDActive)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameManager.isTwoD())
         {
             targetAngle -= 90.0f;
-            twoDActive = false;
+
+            //twoDActive = false;
+            gameManager.setisTwoDActive(false);
             ThreeDWorld.SetActive(true);
             TwoDWorld.SetActive(false);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && !twoDActive)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
         {
             targetAngle += 90.0f;
-            twoDActive = true;
+            //twoDActive = true;
+            gameManager.setisTwoDActive(true);
             ThreeDWorld.SetActive(false);
             TwoDWorld.SetActive(true);
         }
+
 
         if (targetAngle != 0)
         {
             Rotate();
         }
+
+        
+
     }
 
+    /*
+    void LateUpdate()
+    {
+        Vector3 newPosition = targetObject.transform.position + cameraOffset;
+        transform.position = newPosition;
+        //transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+    }
+    */
 
     protected void Rotate()
     {

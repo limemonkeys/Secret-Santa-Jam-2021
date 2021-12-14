@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TwoDPlayerMovement : MonoBehaviour
 {
+    private GameManager gameManager;
+
     CharacterController characterController;
     Rigidbody rb;
 
@@ -19,24 +21,44 @@ public class TwoDPlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         var vertical = 0;
         var horizontal = 0;
 
-        if (Input.GetKey(KeyCode.D))
+        // If the 2d player is in thier native dimension (2d)
+        if (gameManager.isTwoD())
         {
-            horizontal = 1;
-        }
+            if (Input.GetKey(KeyCode.D))
+            {
+                horizontal = 1;
+            }
 
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            horizontal = -1;
+            if (Input.GetKey(KeyCode.A))
+            {
+                horizontal = -1;
+            }
         }
+        else 
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                horizontal = 1;
+            }
+
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                horizontal = -1;
+            }
+        }
+        
 
 
         float yStore = moveDirection.y;

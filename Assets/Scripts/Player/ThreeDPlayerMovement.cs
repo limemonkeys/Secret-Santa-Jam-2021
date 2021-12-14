@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ThreeDPlayerMovement : MonoBehaviour
 {
+    private GameManager gameManager;
+
     CharacterController characterController;
 
     public float jumpSpeed = 20.0f;
@@ -15,6 +17,7 @@ public class ThreeDPlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -23,25 +26,44 @@ public class ThreeDPlayerMovement : MonoBehaviour
         var vertical = 0;
         var horizontal = 0;
 
-        if (Input.GetKey(KeyCode.W))
+        // If the 3d player is in thier native dimension (3d)
+        if (!gameManager.isTwoD())
         {
-            horizontal = 1;
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                horizontal = 1;
+            }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            vertical = -1;
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                vertical = -1;
+            }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            horizontal = -1;
-        }
+            if (Input.GetKey(KeyCode.S))
+            {
+                horizontal = -1;
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            vertical = 1;
+            if (Input.GetKey(KeyCode.D))
+            {
+                vertical = 1;
+            }
         }
+        else 
+        {
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                horizontal = -1;
+            }
+
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                horizontal = 1;
+            }
+        }
+        
         /*
         transform.Translate(new Vector3(horizontal, 0, -vertical) * (speed * Time.deltaTime));
 
