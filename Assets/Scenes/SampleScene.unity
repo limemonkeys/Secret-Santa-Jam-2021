@@ -404,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 256489113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -5}
-  m_LocalScale: {x: 3, y: 1, z: 0.5}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children:
   - {fileID: 536819454}
   m_Father: {fileID: 211296255}
@@ -983,12 +983,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0428bc2ace9169d44b62f4ac209aa2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1365995316}
+  playerTwoD: {fileID: 1281130420}
+  playerThreeD: {fileID: 1227443693}
+  targetObject: {fileID: 1230925644}
   rDistance: 1
   rSpeed: 1
   TwoDWorld: {fileID: 211296254}
   ThreeDWorld: {fileID: 1788921462}
-  cameraOffset: {x: 0, y: 0, z: 0}
+  cameraOffset2d: {x: 0, y: 0, z: 0}
+  cameraOffset3d: {x: 0, y: 0, z: 0}
   smoothFactor: 0.5
   lookAtTarget: 0
 --- !u!1 &967653890
@@ -1054,7 +1057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1227443694
 Transform:
   m_ObjectHideFlags: 0

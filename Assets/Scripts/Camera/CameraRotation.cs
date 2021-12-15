@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraRotation : MonoBehaviour
 {
     private GameManager gameManager;
+    public GameObject playerTwoD;
+    public GameObject playerThreeD;
 
     public GameObject targetObject;
     private float targetAngle = 0;
@@ -19,7 +21,9 @@ public class CameraRotation : MonoBehaviour
 
     private Space offsetPositionSpace = Space.Self;
 
-    public Vector3 cameraOffset;
+    public Vector3 cameraOffset2d;
+    public Vector3 cameraOffset3d;
+    bool cameraOffset3dSet = false;
 
 
     public float smoothFactor = 0.5f;
@@ -28,13 +32,23 @@ public class CameraRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraOffset = transform.position - targetObject.transform.position;
+        cameraOffset2d = transform.position - targetObject.transform.position;
         gameManager = FindObjectOfType<GameManager>();
+        targetObject = GameObject.Find("PlayerTwoDModel");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.isTwoD())
+        {
+            targetObject = GameObject.Find("PlayerTwoDModel");
+        }
+        else
+        {
+            targetObject = GameObject.Find("PlayerThreeDModel");
+        }
+            
 
         // Trigger functions if Rotate is requested
         if (Input.GetKeyDown(KeyCode.LeftArrow) && gameManager.isTwoD())
@@ -43,6 +57,8 @@ public class CameraRotation : MonoBehaviour
 
             //twoDActive = false;
             gameManager.setisTwoDActive(false);
+            playerTwoD.SetActive(false);
+            playerThreeD.SetActive(true);
             ThreeDWorld.SetActive(true);
             TwoDWorld.SetActive(false);
         }
@@ -51,6 +67,8 @@ public class CameraRotation : MonoBehaviour
             targetAngle += 90.0f;
             //twoDActive = true;
             gameManager.setisTwoDActive(true);
+            playerTwoD.SetActive(true);
+            playerThreeD.SetActive(false);
             ThreeDWorld.SetActive(false);
             TwoDWorld.SetActive(true);
         }
@@ -59,20 +77,45 @@ public class CameraRotation : MonoBehaviour
         if (targetAngle != 0)
         {
             Rotate();
+
+
+
+
         }
 
         
 
     }
 
-    /*
+    
     void LateUpdate()
     {
-        Vector3 newPosition = targetObject.transform.position + cameraOffset;
-        transform.position = newPosition;
-        //transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+        if (gameManager.isTwoD())
+        {
+            Vector3 newPosition = targetObject.transform.position + cameraOffset2d;
+            //transform.position = newPosition;
+            transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+            
+
+        }
+        else 
+        {
+
+            Vector3 newPosition = targetObject.transform.position + new Vector3(-7.0f, 1.5f, 0.0f);
+            //transform.position = newPosition;
+            transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+            /*
+            transform.position = target.position + offset;
+            transform.LookAt(target.position);
+            */
+        }
+
+        
+
     }
-    */
+    
+   
+
 
     protected void Rotate()
     {
