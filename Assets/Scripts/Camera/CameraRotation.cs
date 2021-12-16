@@ -34,7 +34,7 @@ public class CameraRotation : MonoBehaviour
     {
         cameraOffset2d = transform.position - targetObject.transform.position;
         gameManager = FindObjectOfType<GameManager>();
-        targetObject = GameObject.Find("PlayerTwoDModel");
+        targetObject = GameObject.Find("PlayerTwoD");
 
         changeVisibility(ThreeDWorld, false);
     }
@@ -44,11 +44,11 @@ public class CameraRotation : MonoBehaviour
     {
         if (gameManager.isTwoD())
         {
-            targetObject = GameObject.Find("PlayerTwoDModel");
+            targetObject = GameObject.Find("PlayerTwoD");
         }
         else
         {
-            targetObject = GameObject.Find("PlayerThreeDModel");
+            targetObject = GameObject.Find("PlayerThreeD");
         }
             
 
@@ -59,32 +59,35 @@ public class CameraRotation : MonoBehaviour
 
             //twoDActive = false;
             gameManager.setisTwoDActive(false);
-            playerTwoD.SetActive(false);
-            playerThreeD.SetActive(true);
-            //GetChildRecursive(ThreeDWorld);
-            //GetChildRecursive(TwoDWorld);
-            //changeVisibility(playerTwoD, false);
-            //changeVisibility(playerThreeD, true);
+
+            //playerThreeD.transform.position = playerTwoD.transform.position;
+
+            //playerTwoD.SetActive(false);
+            //playerThreeD.SetActive(true);
+
+            GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
+            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
+
             changeVisibility(ThreeDWorld, true);
             changeVisibility(TwoDWorld, false);
-            //ThreeDWorld.SetActive(true);
-            //TwoDWorld.SetActive(false);
+
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
         {
             targetAngle += 90.0f;
-            //twoDActive = true;
             gameManager.setisTwoDActive(true);
-            playerTwoD.SetActive(true);
-            playerThreeD.SetActive(false);
-            //GetChildRecursive(ThreeDWorld);
-            //GetChildRecursive(TwoDWorld);
-            //changeVisibility(playerTwoD, true);
-            //changeVisibility(playerThreeD, false);
+
+            //playerTwoD.SetActive(true);
+            //playerThreeD.SetActive(false);
+
+
+
+            GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = true;
+            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
+
+
             changeVisibility(ThreeDWorld, false);
             changeVisibility(TwoDWorld, true);
-            //ThreeDWorld.SetActive(false);
-            //TwoDWorld.SetActive(true);
         }
 
 
@@ -106,8 +109,6 @@ public class CameraRotation : MonoBehaviour
             //child.gameobject contains the current child you can do whatever you want like add it to an array
             print(child.gameObject.GetComponent<Renderer>().enabled);
             child.gameObject.GetComponent<Renderer>().enabled = isVisible;
-
-            //child.gameObject.GetComponent<Renderer>().SetActive(showMeshRenderer);
 
 
             changeVisibility(child.gameObject, isVisible);
