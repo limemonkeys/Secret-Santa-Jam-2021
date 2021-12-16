@@ -35,6 +35,8 @@ public class CameraRotation : MonoBehaviour
         cameraOffset2d = transform.position - targetObject.transform.position;
         gameManager = FindObjectOfType<GameManager>();
         targetObject = GameObject.Find("PlayerTwoDModel");
+
+        changeVisibility(ThreeDWorld, false);
     }
 
     // Update is called once per frame
@@ -59,8 +61,14 @@ public class CameraRotation : MonoBehaviour
             gameManager.setisTwoDActive(false);
             playerTwoD.SetActive(false);
             playerThreeD.SetActive(true);
-            ThreeDWorld.SetActive(true);
-            TwoDWorld.SetActive(false);
+            //GetChildRecursive(ThreeDWorld);
+            //GetChildRecursive(TwoDWorld);
+            //changeVisibility(playerTwoD, false);
+            //changeVisibility(playerThreeD, true);
+            changeVisibility(ThreeDWorld, true);
+            changeVisibility(TwoDWorld, false);
+            //ThreeDWorld.SetActive(true);
+            //TwoDWorld.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
         {
@@ -69,25 +77,44 @@ public class CameraRotation : MonoBehaviour
             gameManager.setisTwoDActive(true);
             playerTwoD.SetActive(true);
             playerThreeD.SetActive(false);
-            ThreeDWorld.SetActive(false);
-            TwoDWorld.SetActive(true);
+            //GetChildRecursive(ThreeDWorld);
+            //GetChildRecursive(TwoDWorld);
+            //changeVisibility(playerTwoD, true);
+            //changeVisibility(playerThreeD, false);
+            changeVisibility(ThreeDWorld, false);
+            changeVisibility(TwoDWorld, true);
+            //ThreeDWorld.SetActive(false);
+            //TwoDWorld.SetActive(true);
         }
 
 
         if (targetAngle != 0)
         {
             Rotate();
-
-
-
-
         }
-
-        
-
     }
 
-    
+    private void changeVisibility(GameObject obj, bool isVisible)
+    {
+        if (null == obj)
+            return;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+                continue;
+            //child.gameobject contains the current child you can do whatever you want like add it to an array
+            print(child.gameObject.GetComponent<Renderer>().enabled);
+            child.gameObject.GetComponent<Renderer>().enabled = isVisible;
+
+            //child.gameObject.GetComponent<Renderer>().SetActive(showMeshRenderer);
+
+
+            changeVisibility(child.gameObject, isVisible);
+        }
+    }
+
+
     void LateUpdate()
     {
         if (gameManager.isTwoD())
