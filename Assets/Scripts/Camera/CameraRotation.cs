@@ -7,6 +7,8 @@ public class CameraRotation : MonoBehaviour
     private GameManager gameManager;
     public GameObject playerTwoD;
     public GameObject playerThreeD;
+    public GameObject TempObsticals2d;
+    public GameObject TempObsticals3d;
 
     public GameObject targetObject;
     private float targetAngle = 0;
@@ -35,13 +37,15 @@ public class CameraRotation : MonoBehaviour
         cameraOffset2d = transform.position - targetObject.transform.position;
         gameManager = FindObjectOfType<GameManager>();
         targetObject = GameObject.Find("PlayerTwoD");
-
+        GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
+                
         changeVisibility(ThreeDWorld, false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (gameManager.isTwoD())
         {
             targetObject = GameObject.Find("PlayerTwoD");
@@ -50,26 +54,28 @@ public class CameraRotation : MonoBehaviour
         {
             targetObject = GameObject.Find("PlayerThreeD");
         }
-            
+
 
         // Trigger functions if Rotate is requested
         if (Input.GetKeyDown(KeyCode.LeftArrow) && gameManager.isTwoD())
         {
             targetAngle -= 90.0f;
-
-            //twoDActive = false;
             gameManager.setisTwoDActive(false);
 
-            //playerThreeD.transform.position = playerTwoD.transform.position;
-
-            //playerTwoD.SetActive(false);
-            //playerThreeD.SetActive(true);
+            TempObsticals2d.SetActive(false);
+            TempObsticals3d.SetActive(false);
 
             GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
+            //playerTwoD.GetComponent<Collider>().enabled = false;
+
             GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
+            //playerThreeD.GetComponent<Collider>().enabled = true;
 
             changeVisibility(ThreeDWorld, true);
             changeVisibility(TwoDWorld, false);
+
+            print("Switch1");
+            
 
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
@@ -77,17 +83,20 @@ public class CameraRotation : MonoBehaviour
             targetAngle += 90.0f;
             gameManager.setisTwoDActive(true);
 
-            //playerTwoD.SetActive(true);
-            //playerThreeD.SetActive(false);
-
-
+            TempObsticals2d.SetActive(true);
+            TempObsticals3d.SetActive(true);
 
             GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = true;
-            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
+            //playerTwoD.GetComponent<Collider>().enabled = true;
 
+            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
+            //playerThreeD.GetComponent<Collider>().enabled = false;
 
             changeVisibility(ThreeDWorld, false);
             changeVisibility(TwoDWorld, true);
+
+            print("Switch2");
+            
         }
 
 
@@ -107,7 +116,6 @@ public class CameraRotation : MonoBehaviour
             if (null == child)
                 continue;
             //child.gameobject contains the current child you can do whatever you want like add it to an array
-            print(child.gameObject.GetComponent<Renderer>().enabled);
             child.gameObject.GetComponent<Renderer>().enabled = isVisible;
 
 
@@ -157,6 +165,7 @@ public class CameraRotation : MonoBehaviour
         {
             transform.RotateAround(targetObject.transform.position, Vector3.up, -rotationAmount);
             targetAngle -= rotationAmount;
+            
         }
         else if (targetAngle < 0)
         {
