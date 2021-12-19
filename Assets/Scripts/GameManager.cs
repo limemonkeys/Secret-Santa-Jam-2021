@@ -6,17 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public bool isTwoDActive = true;
     public bool canMove = false;
+    public int presents = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public void AddPresent(int value)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        presents += value;
     }
 
     public void setisTwoDActive(bool isTwoDActive) {
@@ -37,4 +31,6 @@ public class GameManager : MonoBehaviour
     {
         this.canMove = canMove;
     }
+
+    
 }
