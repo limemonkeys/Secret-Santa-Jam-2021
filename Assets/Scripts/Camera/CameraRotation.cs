@@ -140,7 +140,16 @@ public class CameraRotation : MonoBehaviour
             if (null == child)
                 continue;
             //child.gameobject contains the current child you can do whatever you want like add it to an array
-            child.gameObject.GetComponent<Renderer>().enabled = isVisible;
+            print(child.gameObject.name);
+            print(child.gameObject.tag);
+            if (child.gameObject.tag == "DoNotRender")
+            {
+            }
+            else
+            {
+                child.gameObject.GetComponent<Renderer>().enabled = isVisible;
+            }
+
 
 
             changeVisibility(child.gameObject, isVisible);

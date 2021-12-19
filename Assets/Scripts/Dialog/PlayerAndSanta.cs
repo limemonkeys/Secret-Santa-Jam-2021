@@ -18,6 +18,7 @@ public class PlayerAndSanta : MonoBehaviour
     public GameObject Player;
     public GameObject SantaArrow;
     public GameObject PlayerArrow;
+    public GameObject InGameUI;
 
     private void Awake()
     {
@@ -53,7 +54,8 @@ public class PlayerAndSanta : MonoBehaviour
                 if (messageIndex >= messageArray.Length)
                 {
                     gameManager.setCanMove(true);
-                    Destroy(transform.parent.gameObject);
+                    InGameUI.SetActive(true);
+                    Destroy(transform.gameObject);
                 }
                 else
                 {
