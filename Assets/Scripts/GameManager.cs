@@ -6,8 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public bool isTwoDActive = true;
     public bool canMove = false;
+    public bool canRotate = false;
+    public bool canRestart = false;
     public int presentsLeft;
     public GameObject Presents3d;
+
+    public AudioSource jumpSFX;
 
     void Start() {
         presentsLeft = 0;
@@ -19,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPresent(int value, string name)
     {
+        jumpSFX.Play();
         RemovePresents(name);
     }
 
@@ -56,5 +61,24 @@ public class GameManager : MonoBehaviour
         this.canMove = canMove;
     }
 
-    
+    public void setCanRestart(bool canRestart) 
+    {
+        this.canRestart = canRestart;
+    }
+
+    public bool isCanRestart() 
+    {
+        return canRestart;
+    }
+
+    public void setCanRotate(bool canRotate)
+    {
+        this.canRotate = canRotate;
+    }
+
+    public bool isCanRotate()
+    {
+        return canRotate;
+    }
+
 }

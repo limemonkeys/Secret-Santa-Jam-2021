@@ -12,6 +12,11 @@ public class CameraRotation : MonoBehaviour
     public GameObject Presents2d;
     public GameObject Presents3d;
 
+    public GameObject MovementControls2d;
+    public GameObject MovementControls3d;
+    public GameObject SwitchPerspectiveLeft;
+    public GameObject SwitchPerspectiveRight;
+
     public GameObject targetObject;
     private float targetAngle = 0;
     const float rotationAmount = 1.5f;
@@ -49,7 +54,7 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isCanMove())
+        if (gameManager.isCanMove() && gameManager.isCanRotate())
         {
             if (gameManager.isTwoD())
             {
@@ -75,6 +80,12 @@ public class CameraRotation : MonoBehaviour
                 //Presents2d.SetActive(false);
                 //Presents3d.SetActive(true);
 
+                MovementControls2d.SetActive(false);
+                MovementControls3d.SetActive(true);
+                SwitchPerspectiveLeft.SetActive(false);
+                SwitchPerspectiveRight.SetActive(true);
+
+
                 Vector3 playerTwoDPos = playerTwoD.transform.position;
                 Vector3 playerThreeDPos = playerThreeD.transform.position;
                 playerThreeD.transform.position = new Vector3(playerTwoDPos.x, playerTwoDPos.y, playerThreeDPos.z);
@@ -87,6 +98,7 @@ public class CameraRotation : MonoBehaviour
 
                 changeVisibility(ThreeDWorld, true);
                 changeVisibility(TwoDWorld, false);
+
 
                 print("Switch1");
 
@@ -104,6 +116,11 @@ public class CameraRotation : MonoBehaviour
                 changeVisibility(Presents3d, false);
                 //Presents2d.SetActive(true);
                 //Presents3d.SetActive(false);
+
+                MovementControls2d.SetActive(true);
+                MovementControls3d.SetActive(false);
+                SwitchPerspectiveLeft.SetActive(true);
+                SwitchPerspectiveRight.SetActive(false);
 
                 Vector3 playerTwoDPos = playerTwoD.transform.position;
                 Vector3 playerThreeDPos = playerThreeD.transform.position;

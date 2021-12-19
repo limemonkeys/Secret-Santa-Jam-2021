@@ -41,8 +41,8 @@ public class Tutorial_2 : MonoBehaviour
                 if (messageIndex >= messageArray.Length)
                 {
                     gameManager.setCanMove(true);
-                    //InGameUI.ActivateR(true);
-                    //InGameUI.ActivateSwitch(true);
+                    gameManager.setCanRestart(true);
+                    gameManager.setCanRotate(true);
                     InGameUISwitchPerspective.SetActive(true);
                     InGameUIRest.SetActive(true);
                     Destroy(transform.gameObject);

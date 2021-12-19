@@ -19,6 +19,8 @@ public class UniversalMovement : MonoBehaviour
     private Vector3 respawnPoint2d;
     private Vector3 respawnPoint3d;
 
+    public AudioSource jumpSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class UniversalMovement : MonoBehaviour
     {
         if (gameManager.isCanMove()) 
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && gameManager.isCanRotate())
             {
                 Respawn();
             }
@@ -70,6 +72,7 @@ public class UniversalMovement : MonoBehaviour
                     moveDirection2d.y = 0f;
                     if (Input.GetButtonDown("Jump"))
                     {
+                        jumpSFX.Play();
                         moveDirection2d.y = jumpSpeed;
                     }
                 }
@@ -137,6 +140,7 @@ public class UniversalMovement : MonoBehaviour
 
                 if (characterController3d.isGrounded)
                 {
+                    jumpSFX.Play();
                     moveDirection3d.y = 0f;
                     if (Input.GetButtonDown("Jump"))
                     {
