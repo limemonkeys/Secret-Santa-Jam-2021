@@ -36,6 +36,10 @@ public class UniversalMovement : MonoBehaviour
     {
         if (gameManager.isCanMove()) 
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Respawn();
+            }
             if (gameManager.isTwoD())
             {
                 var horizontal = 0;

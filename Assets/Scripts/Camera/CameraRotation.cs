@@ -9,6 +9,8 @@ public class CameraRotation : MonoBehaviour
     public GameObject playerThreeD;
     public GameObject TempObsticals2d;
     public GameObject TempObsticals3d;
+    public GameObject Presents2d;
+    public GameObject Presents3d;
 
     public GameObject targetObject;
     private float targetAngle = 0;
@@ -38,7 +40,9 @@ public class CameraRotation : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         targetObject = GameObject.Find("PlayerTwoD");
         GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
-                
+        changeVisibility(Presents3d, false); ;
+        //Presents3d.SetActive(false);
+
         changeVisibility(ThreeDWorld, false);
     }
 
@@ -66,6 +70,11 @@ public class CameraRotation : MonoBehaviour
                 TempObsticals2d.SetActive(false);
                 TempObsticals3d.SetActive(false);
 
+                changeVisibility(Presents2d, false);
+                changeVisibility(Presents3d, true);
+                //Presents2d.SetActive(false);
+                //Presents3d.SetActive(true);
+
                 Vector3 playerTwoDPos = playerTwoD.transform.position;
                 Vector3 playerThreeDPos = playerThreeD.transform.position;
                 playerThreeD.transform.position = new Vector3(playerTwoDPos.x, playerTwoDPos.y, playerThreeDPos.z);
@@ -90,6 +99,11 @@ public class CameraRotation : MonoBehaviour
 
                 TempObsticals2d.SetActive(true);
                 TempObsticals3d.SetActive(true);
+
+                changeVisibility(Presents2d, true);
+                changeVisibility(Presents3d, false);
+                //Presents2d.SetActive(true);
+                //Presents3d.SetActive(false);
 
                 Vector3 playerTwoDPos = playerTwoD.transform.position;
                 Vector3 playerThreeDPos = playerThreeD.transform.position;

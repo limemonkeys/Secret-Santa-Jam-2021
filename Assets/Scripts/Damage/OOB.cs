@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class OOB : MonoBehaviour
 {
+
+    void Start() 
+    {
+        
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

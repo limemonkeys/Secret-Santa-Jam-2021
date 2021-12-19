@@ -6,11 +6,35 @@ public class GameManager : MonoBehaviour
 {
     public bool isTwoDActive = true;
     public bool canMove = false;
-    public int presents = 0;
+    public int presentsLeft;
+    public GameObject Presents3d;
 
-    public void AddPresent(int value)
+    void Start() {
+        presentsLeft = 0;
+        foreach (Transform child in Presents3d.transform)
+        {
+            presentsLeft += 1;
+        }
+    }
+
+    public void AddPresent(int value, string name)
     {
-        presents += value;
+        RemovePresents(name);
+    }
+
+    private void RemovePresents(string name) 
+    {
+        Destroy(GameObject.Find(name));
+        UpdatePresents();
+    }
+
+    private void UpdatePresents() 
+    {
+        presentsLeft = 0;
+        foreach (Transform child in Presents3d.transform)
+        {
+            presentsLeft += 1;
+        }
     }
 
     public void setisTwoDActive(bool isTwoDActive) {
