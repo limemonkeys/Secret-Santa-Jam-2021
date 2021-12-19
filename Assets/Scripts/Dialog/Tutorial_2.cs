@@ -13,6 +13,7 @@ public class Tutorial_2 : MonoBehaviour
     public GameManager gameManager;
     public GameObject InGameUISwitchPerspective;
     public GameObject InGameUIRest;
+    public GameObject InGameUI;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class Tutorial_2 : MonoBehaviour
                     gameManager.setCanRotate(true);
                     InGameUISwitchPerspective.SetActive(true);
                     InGameUIRest.SetActive(true);
+                    InGameUI.SetActive(true);
                     Destroy(transform.gameObject);
                 }
                 else
@@ -76,6 +78,7 @@ public class Tutorial_2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InGameUI.SetActive(false);
         gameManager.setCanMove(false);
         messageIndex = 0;
         // Write this message at a speed of 1 char per sec

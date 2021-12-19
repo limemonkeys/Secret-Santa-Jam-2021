@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool canRestart = false;
     public int presentsLeft;
     public GameObject Presents3d;
+    public Text PresentsLeftNumber;
 
     public AudioSource jumpSFX;
 
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         {
             presentsLeft += 1;
         }
+        PresentsLeftNumber.text = presentsLeft.ToString();
     }
 
     public void AddPresent(int value, string name)
@@ -40,6 +43,13 @@ public class GameManager : MonoBehaviour
         {
             presentsLeft += 1;
         }
+        PresentsLeftNumber.text = presentsLeft.ToString();
+        if (presentsLeft <= 0) 
+        {
+            //ADD ENDING
+        }
+
+
     }
 
     public void setisTwoDActive(bool isTwoDActive) {
