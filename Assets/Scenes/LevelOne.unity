@@ -695,7 +695,7 @@ MonoBehaviour:
   heart2: {fileID: 0}
   heart3: {fileID: 0}
   lifeTotal: 3
-  invincibilityLength: 0
+  invincibilityLength: 0.5
 --- !u!65 &159313148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5713,11 +5713,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4797b454b2c96b041afc716eb1711ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heart1: {fileID: 0}
-  heart2: {fileID: 0}
-  heart3: {fileID: 0}
+  heart1: {fileID: 636255161}
+  heart2: {fileID: 810355456}
+  heart3: {fileID: 2139989761}
   lifeTotal: 3
-  invincibilityLength: 0
+  invincibilityLength: 0.5
 --- !u!1 &1208810225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,7 +5987,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01f2f01c19eaa6646bd90ab7030a888b, type: 2}
+  - {fileID: 2100000, guid: 892b972b60935614cb368c3b0034fa47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6365,13 +6365,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281130420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1230925645}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!65 &1281130422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6404,7 +6404,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01f2f01c19eaa6646bd90ab7030a888b, type: 2}
+  - {fileID: 2100000, guid: 580289168a4d4ca4fa3c31d069a2840f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6634,6 +6634,8 @@ GameObject:
   - component: {fileID: 1365995321}
   - component: {fileID: 1365995323}
   - component: {fileID: 1365995324}
+  - component: {fileID: 1365995326}
+  - component: {fileID: 1365995325}
   m_Layer: 0
   m_Name: PlayerThreeD
   m_TagString: Player
@@ -6641,21 +6643,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1365995317
-Transform:
+--- !u!224 &1365995317
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365995316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.6, y: 1.5, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1227443694}
   m_Father: {fileID: 1683356978}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9.6, y: 1.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1365995318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6688,7 +6695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 892b972b60935614cb368c3b0034fa47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6783,6 +6790,41 @@ MonoBehaviour:
   gravity: 5
   speed: 3
   jumpSFX: {fileID: 1752817994}
+--- !u!114 &1365995325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365995316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: cb1000a7df8647f4482bda700d0534cb, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1365995326
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365995316}
+  m_CullTransparentMesh: 1
 --- !u!1 &1373947224
 GameObject:
   m_ObjectHideFlags: 0
@@ -9260,7 +9302,7 @@ MonoBehaviour:
   heart2: {fileID: 810355456}
   heart3: {fileID: 2139989761}
   lifeTotal: 3
-  invincibilityLength: 2
+  invincibilityLength: 0.5
 --- !u!65 &1985037959
 BoxCollider:
   m_ObjectHideFlags: 0
