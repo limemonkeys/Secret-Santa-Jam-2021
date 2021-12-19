@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool isTwoDActive = true;
+    public bool canMove = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,15 @@ public class GameManager : MonoBehaviour
     public bool isTwoD() {
         return isTwoDActive;
     
+    }
+
+    public bool isCanMove()
+    {
+        return canMove;
+    }
+
+    public void setCanMove(bool canMove) 
+    {
+        this.canMove = canMove;
     }
 }

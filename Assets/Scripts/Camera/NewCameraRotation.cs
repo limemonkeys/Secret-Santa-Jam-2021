@@ -63,11 +63,11 @@ public class NewCameraRotation : MonoBehaviour
             gameManager.setisTwoDActive(false);
 
 
-            //GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
-            //GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
+            GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
+            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
 
-            //changeVisibility(ThreeDWorld, true);
-            //changeVisibility(TwoDWorld, false);
+            changeVisibility(ThreeDWorld, true);
+            changeVisibility(TwoDWorld, false);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
         {

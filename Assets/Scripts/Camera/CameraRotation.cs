@@ -45,64 +45,66 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (gameManager.isTwoD())
+        if (gameManager.isCanMove())
         {
-            targetObject = GameObject.Find("PlayerTwoD");
-        }
-        else
-        {
-            targetObject = GameObject.Find("PlayerThreeD");
-        }
+            if (gameManager.isTwoD())
+            {
+                targetObject = GameObject.Find("PlayerTwoD");
+            }
+            else
+            {
+                targetObject = GameObject.Find("PlayerThreeD");
+            }
 
 
-        // Trigger functions if Rotate is requested
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameManager.isTwoD())
-        {
-            targetAngle -= 90.0f;
-            gameManager.setisTwoDActive(false);
+            // Trigger functions if Rotate is requested
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && gameManager.isTwoD())
+            {
+                targetAngle -= 90.0f;
+                gameManager.setisTwoDActive(false);
 
-            TempObsticals2d.SetActive(false);
-            TempObsticals3d.SetActive(false);
+                TempObsticals2d.SetActive(false);
+                TempObsticals3d.SetActive(false);
 
-            GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
-            //playerTwoD.GetComponent<Collider>().enabled = false;
+                GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
+                //playerTwoD.GetComponent<Collider>().enabled = false;
 
-            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
-            //playerThreeD.GetComponent<Collider>().enabled = true;
+                GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = true;
+                //playerThreeD.GetComponent<Collider>().enabled = true;
 
-            changeVisibility(ThreeDWorld, true);
-            changeVisibility(TwoDWorld, false);
+                changeVisibility(ThreeDWorld, true);
+                changeVisibility(TwoDWorld, false);
 
-            print("Switch1");
-            
-
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
-        {
-            targetAngle += 90.0f;
-            gameManager.setisTwoDActive(true);
-
-            TempObsticals2d.SetActive(true);
-            TempObsticals3d.SetActive(true);
-
-            GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = true;
-            //playerTwoD.GetComponent<Collider>().enabled = true;
-
-            GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
-            //playerThreeD.GetComponent<Collider>().enabled = false;
-
-            changeVisibility(ThreeDWorld, false);
-            changeVisibility(TwoDWorld, true);
-
-            print("Switch2");
-            
-        }
+                print("Switch1");
 
 
-        if (targetAngle != 0)
-        {
-            Rotate();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && !gameManager.isTwoD())
+            {
+                targetAngle += 90.0f;
+                gameManager.setisTwoDActive(true);
+
+                TempObsticals2d.SetActive(true);
+                TempObsticals3d.SetActive(true);
+
+                GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = true;
+                //playerTwoD.GetComponent<Collider>().enabled = true;
+
+                GameObject.Find("PlayerThreeDModel").GetComponent<Renderer>().enabled = false;
+                //playerThreeD.GetComponent<Collider>().enabled = false;
+
+                changeVisibility(ThreeDWorld, false);
+                changeVisibility(TwoDWorld, true);
+
+                print("Switch2");
+
+            }
+
+
+            if (targetAngle != 0)
+            {
+                Rotate();
+            }
         }
     }
 

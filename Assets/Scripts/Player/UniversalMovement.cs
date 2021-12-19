@@ -27,115 +27,119 @@ public class UniversalMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isTwoD())
+        if (gameManager.isCanMove()) 
         {
-            var horizontal = 0;
-            var vertical = 0;
-
-            if (Input.GetKey(KeyCode.D))
+            if (gameManager.isTwoD())
             {
-                horizontal = 1;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                horizontal = -1;
-            }
+                var horizontal = 0;
+                var vertical = 0;
 
-            float yStore2d = moveDirection2d.y;
-            float yStore3d = moveDirection2d.y;
-
-            moveDirection2d = (transform.forward * -vertical) + (transform.right * horizontal);
-            moveDirection2d = moveDirection2d.normalized * speed;
-            moveDirection3d = (transform.forward * -vertical) + (transform.right * horizontal);
-            moveDirection3d = moveDirection3d.normalized * speed;
-
-            moveDirection2d.y = yStore2d;
-            moveDirection3d.y = yStore3d;
-
-            if (characterController2d.isGrounded)
-            {
-                moveDirection2d.y = 0f;
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetKey(KeyCode.D))
                 {
-                    moveDirection2d.y = jumpSpeed;
+                    horizontal = 1;
                 }
-            }
-
-            if (characterController3d.isGrounded)
-            {
-                moveDirection3d.y = 0f;
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetKey(KeyCode.A))
                 {
-                    moveDirection3d.y = jumpSpeed;
+                    horizontal = -1;
                 }
+
+                float yStore2d = moveDirection2d.y;
+                float yStore3d = moveDirection2d.y;
+
+                moveDirection2d = (transform.forward * -vertical) + (transform.right * horizontal);
+                moveDirection2d = moveDirection2d.normalized * speed;
+                moveDirection3d = (transform.forward * -vertical) + (transform.right * horizontal);
+                moveDirection3d = moveDirection3d.normalized * speed;
+
+                moveDirection2d.y = yStore2d;
+                moveDirection3d.y = yStore3d;
+
+                if (characterController2d.isGrounded)
+                {
+                    moveDirection2d.y = 0f;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        moveDirection2d.y = jumpSpeed;
+                    }
+                }
+
+                if (characterController3d.isGrounded)
+                {
+                    moveDirection3d.y = 0f;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        moveDirection3d.y = jumpSpeed;
+                    }
+                }
+
+                moveDirection2d.y = moveDirection2d.y + (Physics.gravity.y * gravity * Time.deltaTime);
+                moveDirection3d.y = moveDirection3d.y + (Physics.gravity.y * gravity * Time.deltaTime);
+
+                characterController2d.Move(moveDirection2d * Time.deltaTime);
+                characterController3d.Move(moveDirection3d * Time.deltaTime);
+
             }
+            else
+            {
+                var horizontal = 0;
+                var vertical = 0;
 
-            moveDirection2d.y = moveDirection2d.y + (Physics.gravity.y * gravity * Time.deltaTime);
-            moveDirection3d.y = moveDirection3d.y + (Physics.gravity.y * gravity * Time.deltaTime);
+                if (Input.GetKey(KeyCode.W))
+                {
+                    horizontal = 1;
+                }
 
-            characterController2d.Move(moveDirection2d * Time.deltaTime);
-            characterController3d.Move(moveDirection3d * Time.deltaTime);
+                if (Input.GetKey(KeyCode.A))
+                {
+                    vertical = -1;
+                }
 
+                if (Input.GetKey(KeyCode.S))
+                {
+                    horizontal = -1;
+                }
+
+                if (Input.GetKey(KeyCode.D))
+                {
+                    vertical = 1;
+                }
+
+                float yStore2d = moveDirection2d.y;
+                float yStore3d = moveDirection2d.y;
+
+                moveDirection2d = (transform.forward * 0.0f) + (transform.right * horizontal);
+                moveDirection2d = moveDirection2d.normalized * speed;
+                moveDirection3d = (transform.forward * -vertical) + (transform.right * horizontal);
+                moveDirection3d = moveDirection3d.normalized * speed;
+
+                moveDirection2d.y = yStore2d;
+                moveDirection3d.y = yStore3d;
+
+                if (characterController2d.isGrounded)
+                {
+                    moveDirection2d.y = 0f;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        moveDirection2d.y = jumpSpeed;
+                    }
+                }
+
+                if (characterController3d.isGrounded)
+                {
+                    moveDirection3d.y = 0f;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        moveDirection3d.y = jumpSpeed;
+                    }
+                }
+
+                moveDirection2d.y = moveDirection2d.y + (Physics.gravity.y * gravity * Time.deltaTime);
+                moveDirection3d.y = moveDirection3d.y + (Physics.gravity.y * gravity * Time.deltaTime);
+
+                characterController2d.Move(moveDirection2d * Time.deltaTime);
+                characterController3d.Move(moveDirection3d * Time.deltaTime);
+            }
         }
-        else 
-        {
-            var horizontal = 0;
-            var vertical = 0;
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                horizontal = 1;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                vertical = -1;
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                horizontal = -1;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                vertical = 1;
-            }
-
-            float yStore2d = moveDirection2d.y;
-            float yStore3d = moveDirection2d.y;
-
-            moveDirection2d = (transform.forward * 0.0f) + (transform.right * horizontal);
-            moveDirection2d = moveDirection2d.normalized * speed;
-            moveDirection3d = (transform.forward * -vertical) + (transform.right * horizontal);
-            moveDirection3d = moveDirection3d.normalized * speed;
-
-            moveDirection2d.y = yStore2d;
-            moveDirection3d.y = yStore3d;
-
-            if (characterController2d.isGrounded)
-            {
-                moveDirection2d.y = 0f;
-                if (Input.GetButtonDown("Jump"))
-                {
-                    moveDirection2d.y = jumpSpeed;
-                }
-            }
-
-            if (characterController3d.isGrounded)
-            {
-                moveDirection3d.y = 0f;
-                if (Input.GetButtonDown("Jump"))
-                {
-                    moveDirection3d.y = jumpSpeed;
-                }
-            }
-
-            moveDirection2d.y = moveDirection2d.y + (Physics.gravity.y * gravity * Time.deltaTime);
-            moveDirection3d.y = moveDirection3d.y + (Physics.gravity.y * gravity * Time.deltaTime);
-
-            characterController2d.Move(moveDirection2d * Time.deltaTime);
-            characterController3d.Move(moveDirection3d * Time.deltaTime);
-        }
+        
     }
 }
