@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - MainMenu
     - OOB
     - PlayerAndSanta
+    - PlayerAndSanta2
     - PresentPickup
     - TextWriter
     - ThreeDPlayerMovement
@@ -82,27 +83,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1468}
     - Class: 114
-      Script: {instanceID: 1562}
+      Script: {instanceID: 1560}
     - Class: 114
-      Script: {instanceID: 1598}
+      Script: {instanceID: 1596}
     - Class: 114
-      Script: {instanceID: 2044}
+      Script: {instanceID: 2042}
     - Class: 114
-      Script: {instanceID: 2164}
+      Script: {instanceID: 2162}
     - Class: 114
-      Script: {instanceID: 2302}
+      Script: {instanceID: 2300}
     - Class: 114
-      Script: {instanceID: 2334}
+      Script: {instanceID: 2332}
     - Class: 114
-      Script: {instanceID: 2450}
+      Script: {instanceID: 2448}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2616}
     - Class: 114
-      Script: {instanceID: 2724}
+      Script: {instanceID: 2722}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2748}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2804}
+    - Class: 114
+      Script: {instanceID: 2904}
     - Class: 114
       Script: {instanceID: 3198}
     - Class: 114
@@ -165,23 +168,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1468}
     - Class: 114
-      Script: {instanceID: 1746}
+      Script: {instanceID: 1744}
     - Class: 114
-      Script: {instanceID: 1752}
+      Script: {instanceID: 1750}
     - Class: 114
-      Script: {instanceID: 2034}
+      Script: {instanceID: 2032}
     - Class: 114
-      Script: {instanceID: 2334}
+      Script: {instanceID: 2332}
     - Class: 114
-      Script: {instanceID: 2450}
+      Script: {instanceID: 2448}
     - Class: 114
-      Script: {instanceID: 2492}
+      Script: {instanceID: 2490}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2616}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2892}
     - Class: 114
       Script: {instanceID: 3754}
     - Class: 114
@@ -537,6 +540,12 @@ ScriptsOnlyBuild:
     className: Benchmark04
   - hash:
       serializedVersion: 2
+      Hash: b50920df3fe2a66e6eb2b2ca810d0e96
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerAndSanta2
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -579,7 +588,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 87db02671134b70086b9d211a0efe6ce
+      Hash: f7e6da4d1a093d75cacc7d4e03d38fe4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

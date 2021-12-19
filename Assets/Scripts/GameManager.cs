@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int presentsLeft;
     public GameObject Presents3d;
     public Text PresentsLeftNumber;
+    public GameObject PlayerAndSanta2;
 
     public AudioSource jumpSFX;
 
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         PresentsLeftNumber.text = presentsLeft.ToString();
         if (presentsLeft <= 0) 
         {
-            //ADD ENDING
+            PlayerAndSanta2.SetActive(true);
         }
 
 
