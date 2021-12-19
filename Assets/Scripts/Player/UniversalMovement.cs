@@ -73,6 +73,8 @@ public class UniversalMovement : MonoBehaviour
                     if (Input.GetButtonDown("Jump"))
                     {
                         jumpSFX.Play();
+                        
+                        
                         moveDirection2d.y = jumpSpeed;
                     }
                 }
@@ -140,10 +142,11 @@ public class UniversalMovement : MonoBehaviour
 
                 if (characterController3d.isGrounded)
                 {
-                    jumpSFX.Play();
+                    
                     moveDirection3d.y = 0f;
                     if (Input.GetButtonDown("Jump"))
                     {
+                        jumpSFX.Play();
                         moveDirection3d.y = jumpSpeed;
                     }
                 }

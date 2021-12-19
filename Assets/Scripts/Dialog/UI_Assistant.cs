@@ -30,7 +30,7 @@ public class UI_Assistant : MonoBehaviour
                 string[] messageArray = new string[]{
                     "Hello! I'm Tutorial Tabby!",
                     "I'm going to give you the run down on how to play!",
-                    "You can move in 2d using A and D to move horizontally",
+                    "You can move in using A and D to move horizontally",
                     "You can also use Spacebar to jump.",
                     "You might see me again in the future. Have fun!"
                 };

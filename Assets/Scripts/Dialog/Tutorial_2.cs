@@ -35,7 +35,7 @@ public class Tutorial_2 : MonoBehaviour
                     "You can now press the Left and Right arrows to change dimensions!",
                     "Right now being in Two Dimensions, we can't pass this. Maybe a solution exists in the Third Dimension!",
                     "I've also added an R key in case the dimensions become unstable or unsynced.",
-                    "If you notice any funny buisness, a quick switch from one dimension to the other sometimes fixes things!",
+                    "If you notice any funny business, a quick switch from one dimension to the other sometimes fixes things!",
                     "Anyway, get back to getting presents! Santa is waiting!"
                 };
                 if (messageIndex >= messageArray.Length)
