@@ -66,6 +66,10 @@ public class CameraRotation : MonoBehaviour
                 TempObsticals2d.SetActive(false);
                 TempObsticals3d.SetActive(false);
 
+                Vector3 playerTwoDPos = playerTwoD.transform.position;
+                Vector3 playerThreeDPos = playerThreeD.transform.position;
+                playerThreeD.transform.position = new Vector3(playerTwoDPos.x, playerTwoDPos.y, playerThreeDPos.z);
+
                 GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = false;
                 //playerTwoD.GetComponent<Collider>().enabled = false;
 
@@ -86,6 +90,10 @@ public class CameraRotation : MonoBehaviour
 
                 TempObsticals2d.SetActive(true);
                 TempObsticals3d.SetActive(true);
+
+                Vector3 playerTwoDPos = playerTwoD.transform.position;
+                Vector3 playerThreeDPos = playerThreeD.transform.position;
+                playerTwoD.transform.position = new Vector3(playerThreeDPos.x, playerThreeDPos.y, -5f);
 
                 GameObject.Find("PlayerTwoDModel").GetComponent<Renderer>().enabled = true;
                 //playerTwoD.GetComponent<Collider>().enabled = true;

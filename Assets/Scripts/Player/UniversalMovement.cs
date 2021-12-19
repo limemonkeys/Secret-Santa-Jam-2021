@@ -16,11 +16,18 @@ public class UniversalMovement : MonoBehaviour
     private Vector3 moveDirection2d = Vector3.zero;
     private Vector3 moveDirection3d = Vector3.zero;
 
+    private Vector3 respawnPoint2d;
+    private Vector3 respawnPoint3d;
+
     // Start is called before the first frame update
     void Start()
     {
         characterController2d = GameObject.Find("PlayerTwoD").GetComponent<CharacterController>();
         characterController3d = GameObject.Find("PlayerThreeD").GetComponent<CharacterController>();
+
+        respawnPoint2d = GameObject.Find("PlayerTwoD").transform.position;
+        respawnPoint3d = GameObject.Find("PlayerThreeD").transform.position;
+
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -140,6 +147,12 @@ public class UniversalMovement : MonoBehaviour
                 characterController3d.Move(moveDirection3d * Time.deltaTime);
             }
         }
-        
+    }
+    public void Respawn() 
+    {
+        print(respawnPoint2d);
+
+        GameObject.Find("PlayerTwoD").transform.position = respawnPoint2d;
+        GameObject.Find("PlayerThreeD").transform.position = respawnPoint3d;
     }
 }
