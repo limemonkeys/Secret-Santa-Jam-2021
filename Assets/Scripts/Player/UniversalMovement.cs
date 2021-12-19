@@ -161,9 +161,8 @@ public class UniversalMovement : MonoBehaviour
     }
     public void Respawn() 
     {
-        print(respawnPoint2d);
-
         GameObject.Find("PlayerTwoD").transform.position = respawnPoint2d;
         GameObject.Find("PlayerThreeD").transform.position = respawnPoint3d;
+
     }
 }
