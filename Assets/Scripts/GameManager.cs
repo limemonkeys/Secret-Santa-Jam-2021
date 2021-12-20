@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource jumpSFX;
 
+
     void Start() {
         presentsLeft = 0;
         foreach (Transform child in Presents3d.transform)

@@ -21,6 +21,8 @@ public class PlayerAndSanta2 : MonoBehaviour
     public GameObject PlayerArrow;
     public GameObject InGameUI;
 
+    public AudioSource mainAudio;
+
     private void Awake()
     {
         messageText = transform.Find("message").Find("messageText").GetComponent<Text>();
@@ -90,6 +92,7 @@ public class PlayerAndSanta2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainAudio.Stop();
         gameManager.setCanMove(false);
         messageIndex = 0;
         // Write this message at a speed of 1 char per sec

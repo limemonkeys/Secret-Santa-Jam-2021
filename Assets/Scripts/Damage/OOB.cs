@@ -12,6 +12,8 @@ public class OOB : MonoBehaviour
     public float invincibilityLength;
     private float invincibilityCounter;
 
+    public AudioSource damageSFX;
+
     void Start() 
     {
 
@@ -23,6 +25,7 @@ public class OOB : MonoBehaviour
         {
             if (invincibilityCounter <= 0) 
             {
+                damageSFX.Play();
                 // Get the game manager object and add the value of the current coin
                 FindObjectOfType<UniversalMovement>().Respawn();
                 lifeTotal -= 1;
